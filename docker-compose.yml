@@ -1,10 +1,16 @@
-version: "3"
+version: '3'
 services:
     web:
-        build: .
+        build: ./front-end
         ports:
-            - "5000:80"
-        de:
+            - '4200:4200'
+        depends_on:
+            - api
+    api:
+        build: ./back-end
+        ports:
+            - '5000:80'
+        depends_on:
             - db
     db:
         image: postgres

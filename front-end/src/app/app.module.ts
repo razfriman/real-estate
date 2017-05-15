@@ -1,14 +1,15 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
-import { AUTH_PROVIDERS } from 'angular2-jwt';
+import { HttpModule, Http, RequestOptions } from '@angular/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { AppRouting } from './app.routing';
-import { AuthService } from './auth.service';
+import { AuthService } from './auth/auth.service';
+import { authHttpServiceFactory } from "app/auth/authHttpServiceFactory";
+import { AuthHttp } from "angular2-jwt/angular2-jwt";
 
 @NgModule({
   declarations: [
@@ -23,7 +24,11 @@ import { AuthService } from './auth.service';
     AppRouting
   ],
   providers: [
-    AUTH_PROVIDERS,
+    {
+      provide: AuthHttp,
+      useFactory: authHttpServiceFactory,
+      deps: [Http, RequestOptions]
+    },
     AuthService
   ],
   bootstrap: [
