@@ -1,0 +1,12 @@
+<div class="card">
+  <h3 class="card-header">{{item.title}}</h3>
+  <div class="card-content">
+    <div *ngIf="item.tenant">
+      {{item.tenant.firstName}} Lives here
+    </div>
+    <div *ngIf="!item.tenant" class="alert alert-warning">
+      This property is vacant
+    </div>
+
+  </div>
+</div>

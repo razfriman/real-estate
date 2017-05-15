@@ -1,0 +1,33 @@
+<nav class="navbar navbar-toggleable-md navbar-inverse fixed-top bg-inverse">
+  <a class="navbar-brand" routerLink="/">
+  {{title}}
+  </a>
+
+  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarCollapse">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+  <div class="collapse navbar-collapse" id="navbarCollapse">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item" [routerLinkActive]="['active']" *ngIf="auth.authenticated()">
+        <a class="nav-link" routerLink="/properties">Properties</a>
+      </li>
+      <li class="nav-item" [routerLinkActive]="['active']" *ngIf="auth.authenticated()">
+        <a class="nav-link" routerLink="/tenants">Tenants</a>
+      </li>
+    </ul>
+  </div>
+
+  <!--
+  <label *ngIf="auth.authenticated()" class="text-white">You are logged in</label>
+  <label *ngIf="!auth.authenticated()" class="text-white">You are not logged in, please click 'Log in' button to login</label>
+  -->
+
+  <button class="btn btn-primary btn-margin" (click)="auth.login()" *ngIf="!auth.authenticated()">Log In</button>
+  <button class="btn btn-primary btn-margin" (click)="auth.logout()" *ngIf="auth.authenticated()">Log Out</button>
+</nav>
+
+
+
+
+<router-outlet></router-outlet>
