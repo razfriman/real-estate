@@ -20,3 +20,9 @@ services:
           POSTGRES_DB: 'razapp'
         ports:
           - '5432:5432'
+    compodoc:
+        build: 
+            context: ./front-end
+            dockerfile: compodoc.Dockerfile
+        ports:
+            - '4300:4300'
